@@ -1,0 +1,122 @@
+// FONT SIZES
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-xl: 20px;
+$font-xxl: 24px;
+$font-3xl: 28px;
+$font-4xl: 32px;
+$font-5xl: 48px;
+
+// FONT WEIGHTS
+$font-normal: 400;
+$font-semibold: 600;
+$font-bold: 700;
+
+// BORDER RADIUS
+$radius-button: 48px;
+$radius-general: 16px;
+
+// PADDING
+$padding-md: 40px;
+$padding-sm: 40px 16px;
+$button-lg: 20px 32px;
+$button-md: 16px 24px;
+$button-sm: 8px 16px;
+
+// COLOR PRESETS
+$primary: #222222;
+$link: #555555;
+$secondary: #7B7B7B;
+$tertiary: #F8F8F8;
+$white: #FFFFFF;
+
+$text-title: #333333;
+$text-body: #666666;
+$text-field: #B3B3B3;
+$text-disable: #CCCCCC;
+$text-white: #FFFFFF;
+
+$bg-black: #000000;
+$bg-white: #FFFFFF;
+$bg-light-grey: #FAFAFA;
+$bg-light-blue: #F8FBFC;
+
+$info-primary: #0d6efd;
+$info-positive: #198754;
+$info-warning: #ffc107;
+$info-negative: #dc3545;
+$info-disable: #F0F0F0;
+$info-indigo: #6610f2;
+
+$linkedin: #0a66c2;
+
+$blue-GF: #08A8CC;
+$hover-blue-GF: #0691B0;
+$green-GF: #3CAE4B;
+$dark-green-GF: #2F8E3C;
+$orange-GF: #F27C3E;
+$dark-orange-GF: #DE5F04;
+
+$black-GFDP: #333333;
+$grey-GFDP: #A6A6A6;
+$light-grey-GFDP: #F4F4F4;
+
+$blue-GFDP: #00B5FF;
+$mid-blue-GFDP: #2C7CFF;
+$dark-blue-GFDP: #0564BA;
+
+$green-GFDP: #6CD125;
+$mid-green-GFDP: #42B516;
+$dark-green-GFDP: #0C8204;
+
+$brown-GFDP: #D66B07;
+$mid-brown-GFDP: #B55213;
+$dark-brown-GFDP: #70341C;
+
+$yellow-GFDP: #FFBF0D;
+$mid-yellow-GFDP: #FF9E00;
+$dark-yellow-GFDP: #F57F00;
+
+@mixin ultra_wide {
+    @media only screen and (min-width: 1441px) {
+        @content;
+    }
+}
+
+@mixin laptop_lg {
+    @media only screen and (max-width: 1440px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media only screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin mobile_sm {
+    @media only screen and (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin mobile_xs {
+    @media only screen and (max-width: 420px) {
+        @content;
+    }
+}
