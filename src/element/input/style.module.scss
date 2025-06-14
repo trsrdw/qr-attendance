@@ -1,0 +1,94 @@
+@use "@/styles/mixin.scss" as *;
+
+.inputContainer {
+    position: relative;
+
+    input {
+        outline: none;
+        background: none;
+        width: 100%;
+        height: 48px;
+        border: 0;
+        color: $grey-5;
+        font-size: $font-md;
+        position: relative;
+        z-index: 1;
+    }
+
+    label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: $font-md;
+        color: $dark-grey;
+        line-height: 48px;
+        pointer-events: none;
+        transition: 0.2s ease;
+    }
+
+    .bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background: $dark-grey;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 0;
+            background: $secondary;
+            transition: 0.2s ease;
+        }
+
+        &::before {
+            left: 50%;
+        }
+
+        &::after {
+            right: 50%;
+        }
+    }
+
+    input:focus~label,
+    &.hasValue label {
+        top: -4px;
+        color: $light-grey;
+        transform: translate(-12%, -50%) scale(0.75);
+    }
+
+    input:focus~.bar::before,
+    input:focus~.bar::after {
+        width: 50%;
+    }
+
+    .error {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin-top: 6px;
+        font-size: 0.75rem;
+        color: $error;
+    }
+
+    &.hasError input {
+        color: $error;
+    }
+
+    &.hasError .bar {
+        background: $error;
+
+        &::before,
+        &::after {
+            background: $error;
+        }
+    }
+
+    &.hasError label {
+        color: $error;
+    }
+}

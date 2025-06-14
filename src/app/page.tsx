@@ -1,5 +1,11 @@
-export default function Home() {
+"use client";
+import Home from "@/component/home/home";
+import Container from "@/element/container/container";
+
+export default function Page() {
     return (
-        <div>HOME</div>
+        <Container>
+            <Home />
+        </Container>
     );
 }

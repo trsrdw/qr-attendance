@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^12.18.1",
     "html5-qrcode": "^2.3.8",
     "mysql2": "^3.14.1",
     "next": "15.3.3",
