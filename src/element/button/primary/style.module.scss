@@ -34,3 +34,9 @@
         max-width: unset;
     }
 }
+
+@include mobile_sm {
+    .primary {
+        font-size: $font-sm;
+    }
+}

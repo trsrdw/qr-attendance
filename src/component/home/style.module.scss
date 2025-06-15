@@ -44,3 +44,11 @@
         justify-content: center;
     }
 }
+
+@include mobile_sm {
+    .heading {
+        p {
+            font-size: $font-sm;
+        }
+    }
+}

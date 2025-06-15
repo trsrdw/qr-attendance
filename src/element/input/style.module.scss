@@ -106,3 +106,20 @@
         color: $error;
     }
 }
+
+@include mobile_sm {
+    .inputContainer {
+        input {
+            font-size: $font-sm;
+        }
+
+        input:focus~label,
+        &.hasValue label {
+            transform: translate(-12%, -50%) scale(0.75);
+        }
+
+        .error {
+            font-size: 0.65rem;
+        }
+    }
+}

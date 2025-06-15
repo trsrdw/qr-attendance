@@ -159,6 +159,13 @@
     .formwrapper {
         width: 100%;
     }
+
+    .auth {
+        .or {
+            font-size: $font-xs;
+            line-height: 24px;
+        }
+    }
 }
 
 @include mobile_xs {
