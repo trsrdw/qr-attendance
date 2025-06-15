@@ -7,68 +7,81 @@
         outline: none;
         background: none;
         width: 100%;
-        height: 48px;
-        border: 0;
+        border-radius: 8px;
+        // height: 48px;
+        border: 1px solid $light-grey;
+        padding: 8px 16px;
         color: $grey-5;
         font-size: $font-md;
+        line-height: 32px;
         position: relative;
         z-index: 1;
+        transition: 0.2s ease;
+
+        &:focus {
+            border-color: $grey-6;
+        }
     }
 
     label {
         position: absolute;
         top: 0;
-        left: 0;
-        font-size: $font-md;
-        color: $dark-grey;
+        left: 16px;
+        font-size: $font-sm;
+        color: $light-grey;
         line-height: 48px;
         pointer-events: none;
         transition: 0.2s ease;
     }
 
-    .bar {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 1px;
-        width: 100%;
-        background: $dark-grey;
+    // .bar {
+    //     position: absolute;
+    //     left: 0;
+    //     bottom: 0;
+    //     height: 1px;
+    //     width: 100%;
+    //     background: $dark-grey;
 
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            height: 2px;
-            width: 0;
-            background: $secondary;
-            transition: 0.2s ease;
-        }
+    //     &::before,
+    //     &::after {
+    //         content: "";
+    //         position: absolute;
+    //         height: 2px;
+    //         width: 0;
+    //         background: $secondary;
+    //         transition: 0.2s ease;
+    //     }
 
-        &::before {
-            left: 50%;
-        }
+    //     &::before {
+    //         left: 50%;
+    //     }
 
-        &::after {
-            right: 50%;
-        }
-    }
+    //     &::after {
+    //         right: 50%;
+    //     }
+    // }
 
     input:focus~label,
     &.hasValue label {
-        top: -4px;
-        color: $light-grey;
-        transform: translate(-12%, -50%) scale(0.75);
+        top: 0;
+        background-color: $white;
+        // border: 1px solid black;
+        color: $grey-6;
+        line-height: 24px;
+        padding: 0 4px;
+        z-index: 3;
+        transform: translate(-12%, -50%) scale(0.85);
     }
 
-    input:focus~.bar::before,
-    input:focus~.bar::after {
-        width: 50%;
-    }
+    // input:focus~.bar::before,
+    // input:focus~.bar::after {
+    //     width: 50%;
+    // }
 
     .error {
-        position: absolute;
-        top: 100%;
-        left: 0;
+        // position: absolute;
+        // top: 100%;
+        // left: 0;
         width: 100%;
         margin-top: 6px;
         font-size: 0.75rem;
@@ -77,16 +90,17 @@
 
     &.hasError input {
         color: $error;
+        border-color: $error;
     }
 
-    &.hasError .bar {
-        background: $error;
+    // &.hasError .bar {
+    //     background: $error;
 
-        &::before,
-        &::after {
-            background: $error;
-        }
-    }
+    //     &::before,
+    //     &::after {
+    //         background: $error;
+    //     }
+    // }
 
     &.hasError label {
         color: $error;

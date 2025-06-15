@@ -4,8 +4,10 @@ import Container from "@/element/container/container";
 
 export default function Page() {
     return (
-        <Container>
-            <Home />
-        </Container>
+        <div className="home">
+            <Container>
+                <Home />
+            </Container>
+        </div>
     );
 }

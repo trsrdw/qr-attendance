@@ -22,6 +22,10 @@ body {
   font-style: normal;
   background-color: $tertiary;
   letter-spacing: 0.75px;
+
+  .home {
+    background-color: $tertiary;
+  }
 }
 
 * {
