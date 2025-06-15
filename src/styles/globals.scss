@@ -86,6 +86,10 @@ p {
   line-height: 32px;
   color: $grey-6;
   font-weight: $font-normal;
+
+  @include mobile_sm {
+    font-size: $font-sm;
+  }
 }
 
 button {
@@ -98,6 +102,13 @@ input {
   font-family: $font-body;
   font-weight: $font-normal;
   letter-spacing: 0.75px;
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px $white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px $white inset !important;
+    -webkit-text-fill-color: $grey-5 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 @mixin four_k {

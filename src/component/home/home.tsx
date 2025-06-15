@@ -53,8 +53,8 @@ const bounceVariant: Variants = {
 export default function Home() {
     const router = useRouter();
 
-    const handleRegister = () => {
-        router.push("/register");
+    const handleShow = () => {
+        router.push("/events");
     };
 
     const handleAttend = () => {
@@ -88,7 +88,7 @@ export default function Home() {
                 </motion.div>
 
                 <motion.div variants={bounceVariant}>
-                    <ButtonSecondary onClick={handleRegister}>Register</ButtonSecondary>
+                    <ButtonSecondary onClick={handleShow}>Show Agenda</ButtonSecondary>
                 </motion.div>
             </motion.div>
         </motion.div>

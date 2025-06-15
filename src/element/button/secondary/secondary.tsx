@@ -1,20 +1,25 @@
 import { ReactNode, MouseEvent, useState } from "react";
 import style from "./style.module.scss";
 
-interface ButtonSecondaryProps {
+interface ButtonProps {
     children: ReactNode;
     className?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    disabled?: boolean;
+    type?: "button" | "submit" | "reset";
 }
 
-export default function ButtonSecondary({
+export default function Secondary({
     children,
     className = "",
-    onClick
-}: ButtonSecondaryProps) {
+    onClick,
+    disabled = false,
+    type = "button",
+}: ButtonProps) {
     const [clicked, setClicked] = useState(false);
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+        if (disabled) return;
         setClicked(true);
         setTimeout(() => setClicked(false), 200);
         if (onClick) onClick(e);
@@ -22,9 +27,15 @@ export default function ButtonSecondary({
 
     return (
         <button
+            type={type}
             onClick={handleClick}
-            className={`${style.secondary} ${className} ${clicked ? style.clicked : ""
-                }`}
+            disabled={disabled}
+            className={`
+                ${style.secondary} 
+                ${className} 
+                ${clicked ? style.clicked : ""} 
+                ${disabled ? style.disabled : ""}
+            `}
         >
             {children}
         </button>

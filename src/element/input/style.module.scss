@@ -34,6 +34,20 @@
         transition: 0.2s ease;
     }
 
+    .toggle {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: $grey-5;
+        cursor: pointer;
+        z-index: 2;
+        padding: 4px;
+    }
+
     // .bar {
     //     position: absolute;
     //     left: 0;

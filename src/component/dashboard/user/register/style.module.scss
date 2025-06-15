@@ -1,0 +1,216 @@
+@use "@/styles/mixin.scss" as *;
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 72px;
+    justify-content: center;
+    text-align: center;
+}
+
+.card {
+    background-color: $white;
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+        rgba(50, 50, 93, 0.3) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.35) 0px 1px 3px -1px,
+        rgba(0, 0, 0, 0) 0px 2px 4px 0px inset;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    width: calc(800px * 1/3);
+    background-color: $secondary;
+    justify-content: center;
+
+    .imagewrapper {
+        width: 80vw;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        margin-right: -140px;
+        margin-bottom: -60px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.right {
+    width: calc(800px * 2/3);
+    padding: 40px;
+    display: grid;
+    gap: 40px;
+
+    h3 {
+        text-align: left;
+        font-size: $font-xl;
+        line-height: 32px;
+    }
+}
+
+.formwrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 360px;
+    justify-self: flex-end;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .or {
+        font-size: $font-sm;
+    }
+
+    .icongroup {
+        display: flex;
+        gap: 16px;
+
+        svg {
+            width: 24px;
+            height: auto;
+        }
+
+        .in {
+            svg {
+                path {
+                    fill: $linkedin;
+                }
+            }
+        }
+    }
+}
+
+.space {
+    display: none;
+}
+
+// .password {
+//     margin-bottom: 8px;
+// }
+
+.strengthWrapper {
+    margin-top: 8px;
+
+    .strengthBar {
+        height: 4px;
+        background: $very-light-grey;
+        border-radius: 2px;
+        overflow: hidden;
+
+        .strengthFill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+    }
+
+    .strengthLabel {
+        font-size: 0.75rem;
+        line-height: 24px;
+        text-align: right;
+        letter-spacing: 0.5px;
+    }
+}
+
+@include tablet {
+    .wrapper {
+        padding-top: 64px;
+        justify-content: flex-start;
+        padding-inline: 40px;
+    }
+
+    .card {
+        width: max-content;
+        grid-template-columns: 1fr;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 24px;
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .formwrapper {
+        justify-self: center;
+        max-width: unset;
+        width: 360px;
+    }
+
+    .space {
+        display: block;
+    }
+}
+
+@include mobile_sm {
+    .wrapper {
+        padding-inline: 16px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .formwrapper {
+        width: 100%;
+    }
+
+    .auth {
+        .or {
+            font-size: $font-xs;
+            line-height: 24px;
+        }
+    }
+}
+
+@include mobile_xs {
+    .wrapper {
+        padding-inline: 16px;
+    }
+
+    .right {
+        padding: 40px 16px;
+    }
+}

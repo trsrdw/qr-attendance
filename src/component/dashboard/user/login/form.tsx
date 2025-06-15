@@ -1,4 +1,7 @@
+"use client";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { motion, Variants } from "framer-motion";
 import Input from "@/element/input/input";
 import style from "./style.module.scss";
@@ -6,10 +9,6 @@ import ButtonPrimary from "@/element/button/primary/primary";
 import SvgIcon from "@/element/icon/svg";
 import ButtonIcon from "@/element/button/icon/icon";
 import Image from "next/image";
-
-type FormProps = {
-    onSuccess: (attendee: { fullname: string; email: string }) => void;
-};
 
 const containerVariants: Variants = {
     hidden: {},
@@ -29,23 +28,23 @@ const fadeUp: Variants = {
     },
 };
 
-export default function Form({ onSuccess }: FormProps) {
+export default function FormLogin() {
+    const router = useRouter();
+
     const [formData, setFormData] = useState({
-        fullname: "",
         email: "",
+        password: "",
     });
 
     const [errors, setErrors] = useState({
-        fullname: "",
         email: "",
+        password: "",
     });
 
-    const validate = () => {
-        const newErrors = { fullname: "", email: "" };
+    const [loading, setLoading] = useState(false);
 
-        if (!formData.fullname.trim()) {
-            newErrors.fullname = "Full name is required.";
-        }
+    const validate = () => {
+        const newErrors = { email: "", password: "" };
 
         if (!formData.email.trim()) {
             newErrors.email = "Email is required.";
@@ -53,16 +52,35 @@ export default function Form({ onSuccess }: FormProps) {
             newErrors.email = "Invalid email address.";
         }
 
+        if (!formData.password.trim()) {
+            newErrors.password = "Password is required.";
+        }
+
         setErrors(newErrors);
-        return !newErrors.fullname && !newErrors.email;
+        return !newErrors.email && !newErrors.password;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            // proceed with submit
-            console.log("Form submitted:", formData);
-            onSuccess(formData);
+        if (!validate()) return;
+
+        setLoading(true);
+
+        const res = await signIn("credentials", {
+            redirect: false,
+            email: formData.email,
+            password: formData.password,
+        });
+
+        setLoading(false);
+
+        if (res?.ok) {
+            router.push("/dashboard");
+        } else {
+            setErrors((prev) => ({
+                ...prev,
+                password: "Invalid email or password.",
+            }));
         }
     };
 
@@ -83,25 +101,17 @@ export default function Form({ onSuccess }: FormProps) {
                     <div className={style.imagewrapper}>
                         <Image
                             src={`${process.env.NEXT_PUBLIC_BASE_URL}/step.png`}
-                            alt={"Zentry"}
+                            alt="Login Illustration"
                             fill
                             priority
                         />
                     </div>
                 </div>
                 <div className={style.right}>
-                    <h3>Take a seat using email, then <br /> check it for confirmation</h3>
+                    <h3>Good to See You Again.<br className={style.space} /> Let’s Get to Work.</h3>
                     <div className={style.formwrapper}>
                         <form onSubmit={handleSubmit} noValidate>
                             <div className={style.group}>
-                                <Input
-                                    type="text"
-                                    label="Full Name"
-                                    name="fullname"
-                                    value={formData.fullname}
-                                    onChange={handleChange}
-                                    error={errors.fullname}
-                                />
                                 <Input
                                     type="email"
                                     label="Email"
@@ -110,14 +120,24 @@ export default function Form({ onSuccess }: FormProps) {
                                     onChange={handleChange}
                                     error={errors.email}
                                 />
+                                <Input
+                                    type="password"
+                                    label="Password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    error={errors.password}
+                                />
                             </div>
-                            <ButtonPrimary>Submit</ButtonPrimary>
+                            <ButtonPrimary type="submit" disabled={loading}>
+                                {loading ? "Signing In..." : "Sign In"}
+                            </ButtonPrimary>
                         </form>
 
                         <div className={style.auth}>
                             <div className={style.alt}>
                                 <p>OR</p>
-                                <p className={style.or}>Sign up with</p>
+                                <p className={style.or}>Sign in with</p>
                             </div>
                             <div className={style.icongroup}>
                                 <ButtonIcon>
